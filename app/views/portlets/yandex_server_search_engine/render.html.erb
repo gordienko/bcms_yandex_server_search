@@ -1,0 +1,29 @@
+<h2>Search Results</h2>
+<% unless @results.nil? %>
+  <p>For '<%= @results.query %>', found <%= @results.results_count %> results.</p>
+
+  <% if @results.previous_page? %><%= link_to h("< Back"), @results.previous_page_path %><% end %>
+  <% if @results.next_page? %><%= link_to h("Next >"), @results.next_page_path %><% end %>
+  <p></p>
+  <% @results.each do |result|%>
+   <h2><%= result.number %>. <%= link_to result.title, result.url,  :class=>"search_result_title" %></h2>
+   <div class="meta">
+     Size: <%= result.size %><br>
+     Url: <%= result.url %><br>
+     Date: <%= Russian::strftime(result.modtime, "%A, %d %B %Y, %H:%M") %><br>
+   </div>
+   <p><%= result.description %></p>
+  <% end %>
+
+  <% if @results.previous_page? %><%= link_to h("< Back"), @results.previous_page_path %><% end %>
+  <%  @results.pages.each do |p| %>
+    <%= link_to_unless @results.current_page?(p), p, @results.page_path(p) %>
+  <% end %>
+  <% if @results.next_page? %><%= link_to h("Next >"), @results.next_page_path %><% end %>
+  <p style="text-align: right;">
+    Search is carried out with use <a href="http://company.yandex.ru/technology/products/yandex-server.xml" target="_blank">Yandex.Server</a></p>
+<% else %>
+ <% if !params[:query].nil? and !params[:query].empty? %>
+ <p>We did not find results. Try the suggestions below or type a new query above.</p>
+ <% end %> 
+<% end %>
