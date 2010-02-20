@@ -110,7 +110,7 @@ $ dsindexer dsindexer.cfg
 At this point, you should have the Yandex-Server appliance configured.
 
 ### C. Configuring the BrowserCMS Yandex-Server Search Module
-These instructions assume you have successfully installed the bcms_google_mini_search module into your project. To make
+These instructions assume you have successfully installed the bcms_yandex_server_search module into your project. To make
 the module work, you will have to configure two portlets.
 
 1. In your sitemap, create a new section called 'Search', with a path '/search'.
