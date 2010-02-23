@@ -21,7 +21,7 @@ class SearchResult
 
   def self.parse_results_count(xml_doc)
     root = xml_doc.root
-    count = root.elements['response/found@all']
+    count = root.elements['response/found[@priority="all"]']
     count ? count.text.to_i : 0
   end
 
